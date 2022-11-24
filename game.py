@@ -44,9 +44,10 @@ doors = """
 """
 intro_dialog = """Greetings!
 You are a weary traveller, searching for a long-lost treasure  - the Beacon of True Randomness. However, in your quest to obtain it, you must enter a maze of 50 rooms.
-In each room there are two doors - one leads you closer to the Beacon, but the other leads to the Lake of Pseudo-Random Fire! There is no way to distinguish which door is which, except for one:
-Accompanying you is a high priest named Orycull. They claim to be able to speak to both the Beacon and the Lake transmitting a hexadecimal message chosen by you. Every time they speak, both entities will respond with a strange song, also in hexadecimal, echoed through their respective doors. Orycull loses their voice quickly, so they can only do this 100 times.
-While Orycull may not be able to point you directly to the correct door, a clever traveller may be able to use their gift to guide themselves safely to the treasure..."""
+In each room there are two doors - one leads you closer to the Beacon, but the other leads to the Lake of Pseudo-Random Fire! There is no way to distinguish which door is which, except...
+Accompanying you is a high priest named Orycull. They can relay your messages to both the Beacon and the Lake. After Orycull speaks, a strange song will emit from each of the doors. The door leading to the Beacon will emit a random song, while the door leading to the Lake will emit a pseudorandom song dependent on your message. Refer to the source code for how the pseudorandom song is composed.
+To make matters more difficult, the Beacon can remember Orycull's previous incantations - if Orycull utters the same incantation twice, the Beacon will emit the same random song it did the previous time.
+While Orycull may not be able to point you directly to the correct door, a clever traveller may be able to use Orycull's powers to safely get to the treasure. However, be careful as Orycull can only perform 100 incantations (their voice gets tired easily)..."""
 enter_dialog = "You enter a room. Inside the room are two doors. How do you proceed?" 
 options = """1 - Choose left door
 2 - Choose right door
@@ -61,10 +62,10 @@ orycull_dialog = "Enter the message you wish Orycull to communicate to the entit
 orycull_error_dialog = "Sorry, Orycull only relays 16-byte messages, in hexadecimal format."
 orycull_response_dialog = """The left door sings: {left_response}
 The right door sings: {right_response}"""
-orycull_run_out_dialog = "Oh no! Orycull voice broke! They can't talk anymore for the rest of the quest."
+orycull_run_out_dialog = "Oh no! Orycull's voice broke! They can't talk anymore for the rest of the quest..."
 orycull_remaining_dialog = "Orycull can still speak {n:d} more times."
 rooms_remaining_dialog = "There are {n:d} rooms remaining."
-win_dialog = """Magnificent! You have survived the 50 rooms. Unfortunately, to your chargrin, the Beacon of True Randomness is in another castle...
+win_dialog = """Magnificent! You have braved the 50 rooms. Unfortunately, to your chargrin, the Beacon of True Randomness is in another castle...
 Oh well. Here's a consolation prize: {flag:s}"""
 
 def orycull(messages_left, left_game, right_game):
