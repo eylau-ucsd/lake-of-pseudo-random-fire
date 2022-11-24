@@ -17,15 +17,20 @@ class PRFGame:
         ciphertext = cipher.encrypt(msg) + cipher.decrypt(msg_comp) # concatenation of cipher.encrypt(msg) and cipher.decrypt(msg_comp)
         return ciphertext
     
+    def random(self, msg):
+        # random oracle has consistency: if the same plaintext was given to the oracle twice,
+        # the random oracle will return the same ciphertext on both queries
+        if (msg in self.plaintext_ciphertext):
+            return self.plaintext_ciphertext[msg] 
+        random_string = urandom(32)
+        self.plaintext_ciphertext[msg] = random_string
+        return random_string
+    
     def oracle(self, msg): # msg is a bytestring that is 16 bytes long
         if (len(msg) != 16):
             return None
         if (self.mode == 0):
-            if (msg in self.plaintext_ciphertext):
-                return self.plaintext_ciphertext[msg]
-            random_string = urandom(32)
-            self.plaintext_ciphertext[msg] = random_string
-            return random_string
+            return self.random(msg)
         else: # mode = 1 (pseudorandom oracle)
             return self.pseudorandom(msg)
     
