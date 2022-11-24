@@ -44,8 +44,8 @@ doors = """
 """
 intro_dialog = """Greetings!
 You are a weary traveller, searching for a long-lost treasure  - the Beacon of True Randomness. However, in your quest to obtain it, you must enter a maze of 50 rooms.
-In each room there are two doors - one leads you closer to the Beacon, but the other leads to Lake of Pseudo-Random Fire! There is only one way to distinguish which door is which...
-Accompanying you in your journet is a high priest named Orycull. They are quiet and reveal very little about themselves, but they claim to be a medium for the Beacon and the Lake. When Orycull utters an incantation, the doors respond differently.
+In each room there are two doors - one leads you closer to the Beacon, but the other leads to Lake of Pseudo-Random Fire! There is only one way to distinguish which door is which.
+Accompanying you in your journet is a high priest named Orycull. They are quiet and reveal very little about themselves, but they claim to be a medium for the Beacon and the Lake. When Orycull utters an incantation, the doors respond with different songs.
 A clever traveller may be able to use Orycull's powers to safely get to the treasure. However, be careful as Orycull's voice wears out after 100 incantations..."""
 enter_dialog = "You enter a room. Inside the room are two doors. How do you proceed?" 
 options = """1 - Choose left door
