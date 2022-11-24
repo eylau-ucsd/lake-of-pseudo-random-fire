@@ -45,7 +45,7 @@ doors = """
 intro_dialog = """Greetings!
 You are a weary traveller, searching for a long-lost treasure  - the Beacon of True Randomness. However, in your quest to obtain it, you must enter a maze of 50 rooms.
 In each room there are two doors - one leads you closer to the Beacon, but the other leads to the Lake of Pseudo-Random Fire! There is no way to distinguish which door is which, except...
-Accompanying you is a high priest named Orycull. They can relay your messages to both the Beacon and the Lake. After Orycull speaks, a strange song will emit from each of the doors. The door leading to the Beacon will emit a random song, while the door leading to the Lake will emit a pseudorandom song dependent on your message. Refer to the source code for how the pseudorandom song is composed.
+Accompanying you is a high priest named Orycull. They can relay your messages to both the Beacon and the Lake. After Orycull speaks, a strange song will emit from each of the doors. The door leading to the Beacon will emit a random song, while the door leading to the Lake will emit a pseudorandom song dependent on your message. Refer to The Source for how the pseudorandom song is composed.
 To make matters more difficult, the Beacon can remember Orycull's previous incantations - if Orycull utters the same incantation twice, the Beacon will emit the same random song it did the previous time.
 While Orycull may not be able to point you directly to the correct door, a clever traveller may be able to use Orycull's powers to safely get to the treasure. However, be careful as Orycull can only perform 100 incantations (their voice gets tired easily)..."""
 enter_dialog = "You enter a room. Inside the room are two doors. How do you proceed?" 
