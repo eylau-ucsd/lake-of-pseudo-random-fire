@@ -14,7 +14,7 @@ class PRFGame:
     def pseudorandom(self, msg): # pseudorandom function
         msg_comp = bytes(x ^ 0xff for x in msg) # bitwise complement of msg
         cipher = AES.new(self.key, AES.MODE_ECB)
-        ciphertext = cipher.encrypt(msg) + cipher.decrypt(msg_comp) # plus is concatenating the two bytestrings
+        ciphertext = cipher.encrypt(msg) + cipher.decrypt(msg_comp) # concatenation of cipher.encrypt(msg) and cipher.decrypt(msg_comp)
         return ciphertext
     
     def oracle(self, msg): # msg is a bytestring that is 16 bytes long
@@ -57,7 +57,7 @@ left_dialog = "You walk through the left door..."
 right_dialog = "You walk through the right door..."
 fail_dialog = "Oh no! You fell straight into the Lake of Pseudo-Random Fire. Better luck next time!"
 succeed_dialog = "Phew! You didn't walk into the Lake of Pseudo-Random Fire. Onwards..."
-orycull_dialog = "What message would you like Orycull to incant to the doors? "
+orycull_dialog = "What message would you like Orycull to utter to the doors? "
 orycull_error_dialog = "Sorry, Orycull only incants 16-byte messages, in hexspeak."
 orycull_response_dialog = """The left door sings: {left_response}
 The right door sings: {right_response}"""
@@ -92,10 +92,16 @@ def main():
     messages_left = 100
     key = urandom(16)
     print(intro_dialog)
+    random_game = PRFGame(0, key) # random case
+    real_game = PRFGame(1, key) # pseudorandom case
     while (rooms > 0):
         correct_door = random.getrandbits(1) # 0 is left, 1 is right
-        left_game = PRFGame(correct_door, key) # game for left door
-        right_game = PRFGame(correct_door ^ 1, key) # game for right door
+        if (correct_door == 0):
+            left_game = random_game
+            right_game = real_game
+        else:
+            left_game = real_game
+            right_game = random_game
         print(doors)
         print(enter_dialog)
         while True:
