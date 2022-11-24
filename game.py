@@ -6,15 +6,15 @@ import binascii
 flag = "flag\{testflag\}"
 
 class PRFGame:
-    def __init__(self, mode): # mode = 1 is pseudorandom, move = 0 is random
+    def __init__(self, mode, key): # mode = 1 is pseudorandom, move = 0 is random
         self.plaintext_ciphertext = {}
-        self.key = urandom(16)
+        self.key = key
         self.mode = mode
     
-    def encrypt(self, msg):
-        msg_comp = bytes(x ^ 1 for x in msg)
+    def pseudorandom(self, msg): # pseudorandom function
+        msg_comp = bytes(x ^ 0xff for x in msg) # bitwise complement of msg
         cipher = AES.new(self.key, AES.MODE_ECB)
-        ciphertext = cipher.encrypt(msg) + cipher.encrypt(msg_comp)
+        ciphertext = cipher.encrypt(msg) + cipher.decrypt(msg_comp) # plus is concatenating the two bytestrings
         return ciphertext
     
     def oracle(self, msg): # msg is a bytestring that is 16 bytes long
@@ -27,9 +27,9 @@ class PRFGame:
             self.plaintext_ciphertext[msg] = random_string
             return random_string
         else: # mode = 1 (pseudorandom oracle)
-            return self.encrypt(msg)
+            return self.pseudorandom(msg)
     
-    def guess(mode_guess):
+    def guess(self, mode_guess):
         return (self.mode == mode_guess)
 
 doors = """
@@ -90,18 +90,19 @@ def orycull(messages_left, left_game, right_game):
 def main():
     rooms = 50
     messages_left = 100
+    key = urandom(16)
     print(intro_dialog)
     while (rooms > 0):
         correct_door = random.getrandbits(1) # 0 is left, 1 is right
-        left_game = PRFGame(correct_door) # game for left door
-        right_game = PRFGame(correct_door ^ 1) # game for right door
+        left_game = PRFGame(correct_door, key) # game for left door
+        right_game = PRFGame(correct_door ^ 1, key) # game for right door
         print(doors)
         print(enter_dialog)
-        decision = input(options)
         while True:
+            decision = input(options)
             match decision:
                 case "1": # left door
-                    if (correct_door == 0):
+                    if (left_game.guess(0)):
                         print(succeed_dialog)
                         rooms -= 1
                         print(rooms_remaining_dialog.format(n=rooms))
@@ -110,7 +111,7 @@ def main():
                         print(fail_dialog)
                         return
                 case "2": # right door
-                    if (correct_door == 1):
+                    if (right_game.guess(0)):
                         print(succeed_dialog)
                         rooms -= 1
                         print(rooms_remaining_dialog.format(n=rooms))
