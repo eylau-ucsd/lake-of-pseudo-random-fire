@@ -10,7 +10,7 @@ Greetings! You are a weary traveller, searching for a long-lost treasure  - the 
 
 Accompanying you in your journey is a high priest named Orycull. They are your only way to tell which door is which. When Orycull utters an incantation of your choosing, the doors emit different signals. The door leading you closer to the Beacon will emit a fully random signal, while the door leading you to the Lake will emit a pseudorandom signal.
 
-A clever traveller may be able to distinguish the random and pseudorandom signals and safely get to the treasure. However, be careful as Orycull's can only utter so many incantations...
+A clever traveller may be able to distinguish the random and pseudorandom signals and safely get to the treasure. However, be careful as Orycull can only utter so many incantations...
 
 ### original specification
 

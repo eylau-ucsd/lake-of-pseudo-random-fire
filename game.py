@@ -62,7 +62,7 @@ left_dialog = "You walk through the left door..."
 right_dialog = "You walk through the right door..."
 fail_dialog = "Oh no! You fell straight into the Lake of Pseudo-Random Fire. Better luck next time!"
 succeed_dialog = "Phew! You didn't walk into the Lake of Pseudo-Random Fire. Onwards..."
-orycull_dialog = "What message would you like Orycull to utter to the doors? "
+orycull_dialog = "Enter your incantation for Orycull to utter: "
 orycull_error_dialog = "Sorry, Orycull only utters 16-byte incantations, in hexspeak."
 orycull_response_dialog = """The left door sings: {left_response}
 The right door sings: {right_response}"""
