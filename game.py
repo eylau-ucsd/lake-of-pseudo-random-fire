@@ -61,14 +61,14 @@ options_fail = "Invalid option."
 left_dialog = "You walk through the left door..."
 right_dialog = "You walk through the right door..."
 fail_dialog = "Oh no! You fell straight into the Lake of Pseudo-Random Fire. Better luck next time!"
-succeed_dialog = "Phew! You didn't walk into the Lake of Pseudo-Random Fire. Onwards..."
+succeed_dialog = "Phew! You didn't walk into the Lake of Pseudo-Random Fire."
 orycull_dialog = "Enter your incantation for Orycull to utter: "
 orycull_error_dialog = "Sorry, Orycull only utters 16-byte incantations, in hexspeak."
 orycull_response_dialog = """The left door sings: {left_response}
 The right door sings: {right_response}"""
 orycull_run_out_dialog = "Oh no! Orycull's voice broke! They can't talk anymore for the rest of the quest..."
 orycull_remaining_dialog = "Orycull can still speak {n:d} more times."
-rooms_remaining_dialog = "There are {n:d} rooms remaining."
+rooms_remaining_dialog = "There are {n:d} rooms remaining. Onwards..."
 win_dialog = """Magnificent! You have braved the 50 rooms. Unfortunately, to your chagrin, the Beacon of True Randomness is in another castle...
 Oh well. Here's a consolation prize: {flag:s}"""
 
