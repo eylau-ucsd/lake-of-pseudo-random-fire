@@ -1,6 +1,7 @@
 # Lake of Pseudo-Random Fire
 ## Crypto - Medium
 | author | first blood | solves | points |
+| --- | --- | -- | --- |
 | Eugene Lau | TBD | TBD | TBD |
 
 ### prompt
