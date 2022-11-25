@@ -1,14 +1,18 @@
+#!/bin/python3
+
 from Crypto.Cipher import AES
 from os import urandom
 import random
 import binascii
 
-flag = "flag\{testflag\}"
+flag = "flag{testflag}"
 
 class PRFGame:
-    def __init__(self, mode, key): # mode = 1 is pseudorandom, move = 0 is random
+    def __init__(self, mode, key):
         self.plaintext_ciphertext = {}
         self.key = key
+        # mode = 1 is pseudorandom, move = 0 is random
+        # one of the doors will be in the pseudorandom mode, and the other door will be in random mode
         self.mode = mode
     
     def pseudorandom(self, msg): # pseudorandom function
@@ -49,9 +53,9 @@ doors = """
 """
 intro_dialog = """Greetings!
 You are a weary traveller, searching for a long-lost treasure  - the Beacon of True Randomness. However, in your quest to obtain it, you must enter a maze of 50 rooms.
-In each room there are two doors - one leads you closer to the Beacon, but the other leads to Lake of Pseudo-Random Fire! There is only one way to distinguish which door is which.
-Accompanying you in your journet is a high priest named Orycull. They are quiet and reveal very little about themselves, but they claim to be a medium for the Beacon and the Lake. When Orycull utters an incantation, the doors respond with different songs.
-A clever traveller may be able to use Orycull's powers to safely get to the treasure. However, be careful as Orycull's voice wears out after 100 incantations..."""
+In each room there are two doors - one leads you closer to the Beacon, but the other leads to Lake of Pseudo-Random Fire!
+Accompanying you in your journey is a high priest named Orycull. They are quiet and reveal very little about themselves, but they are your only way to tell which door is which. When Orycull utters an incantation, the doors emit different signals. The door leading you closer to the Beacon will emit a fully random signal, while the door leading you to the Lake will emit a pseudorandom signal.
+A clever traveller may be able to distinguish the random and pseudorandom signals and safely get to the treasure. However, be careful as Orycull's voice wears out after 100 incantations..."""
 enter_dialog = "You enter a room. Inside the room are two doors. How do you proceed?" 
 options = """1 - Choose left door
 2 - Choose right door
@@ -63,7 +67,7 @@ right_dialog = "You walk through the right door..."
 fail_dialog = "Oh no! You fell straight into the Lake of Pseudo-Random Fire. Better luck next time!"
 succeed_dialog = "Phew! You didn't walk into the Lake of Pseudo-Random Fire. Onwards..."
 orycull_dialog = "What message would you like Orycull to utter to the doors? "
-orycull_error_dialog = "Sorry, Orycull only incants 16-byte messages, in hexspeak."
+orycull_error_dialog = "Sorry, Orycull only utters 16-byte incantations, in hexspeak."
 orycull_response_dialog = """The left door sings: {left_response}
 The right door sings: {right_response}"""
 orycull_run_out_dialog = "Oh no! Orycull's voice broke! They can't talk anymore for the rest of the quest..."
