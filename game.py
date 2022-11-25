@@ -8,9 +8,9 @@ import binascii
 flag = "flag{testflag}"
 
 class PRFGame:
-    def __init__(self, mode, key):
+    def __init__(self, mode):
         self.plaintext_ciphertext = {}
-        self.key = key
+        self.key = urandom(16)
         # mode = 1 is pseudorandom, move = 0 is random
         # one of the doors will be in the pseudorandom mode, and the other door will be in random mode
         self.mode = mode
@@ -51,11 +51,7 @@ doors = """
           |         |                         |         |          
           └---------┘                         └---------┘          
 """
-intro_dialog = """Greetings!
-You are a weary traveller, searching for a long-lost treasure  - the Beacon of True Randomness. However, in your quest to obtain it, you must enter a maze of 50 rooms.
-In each room there are two doors - one leads you closer to the Beacon, but the other leads to Lake of Pseudo-Random Fire!
-Accompanying you in your journey is a high priest named Orycull. They are quiet and reveal very little about themselves, but they are your only way to tell which door is which. When Orycull utters an incantation, the doors emit different signals. The door leading you closer to the Beacon will emit a fully random signal, while the door leading you to the Lake will emit a pseudorandom signal.
-A clever traveller may be able to distinguish the random and pseudorandom signals and safely get to the treasure. However, be careful as Orycull's voice wears out after 100 incantations..."""
+
 enter_dialog = "You enter a room. Inside the room are two doors. How do you proceed?" 
 options = """1 - Choose left door
 2 - Choose right door
@@ -73,7 +69,7 @@ The right door sings: {right_response}"""
 orycull_run_out_dialog = "Oh no! Orycull's voice broke! They can't talk anymore for the rest of the quest..."
 orycull_remaining_dialog = "Orycull can still speak {n:d} more times."
 rooms_remaining_dialog = "There are {n:d} rooms remaining."
-win_dialog = """Magnificent! You have braved the 50 rooms. Unfortunately, to your chargrin, the Beacon of True Randomness is in another castle...
+win_dialog = """Magnificent! You have braved the 50 rooms. Unfortunately, to your chagrin, the Beacon of True Randomness is in another castle...
 Oh well. Here's a consolation prize: {flag:s}"""
 
 def orycull(messages_left, left_game, right_game):
@@ -99,18 +95,14 @@ def orycull(messages_left, left_game, right_game):
 def main():
     rooms = 50
     messages_left = 100
-    key = urandom(16)
-    print(intro_dialog)
-    random_game = PRFGame(0, key) # random case
-    real_game = PRFGame(1, key) # pseudorandom case
     while (rooms > 0):
         correct_door = random.getrandbits(1) # 0 is left, 1 is right
         if (correct_door == 0):
-            left_game = random_game
-            right_game = real_game
+            left_game = PRFGame(0) # make the left door emit truly random signals
+            right_game = PRFGame(1) # make the right door emit pseudorandom signals
         else:
-            left_game = real_game
-            right_game = random_game
+            left_game = PRFGame(1) # make the left door emit pseudorandom signals
+            right_game = PRFGame(0) # make the right door emit truly random signals
         print(doors)
         print(enter_dialog)
         while True:
