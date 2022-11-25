@@ -24,7 +24,7 @@ The pseudorandom response takes Orycull's uttered incantation, performs the foll
 
 `f(x) = AESEncrypt(K, x) || AESDecrypt(K, !x)`
 
-Where `x` refers to the 16-byte bytestring that corresponds to the 32-character hexstring, `||` refers to bytestring concatenation, `AESEncrypt(K, x)` and `AESDecrypt(K, x)` are the respective AES encryption and decryption algorithms for a key `K` and message `x`, and `!x` refers to the bitwise complement of `x` (i.e. if you flipped each bit in `x` once). A new value for key `K` is generated for every new room the player enters, and does not change until the player advances to a new room.
+Where `x` refers to the 16-byte bytestring that corresponds to the 32-character hexstring, `||` refers to bytestring concatenation, `AESEncrypt(K, x)` and `AESDecrypt(K, x)` are the respective AES encryption and decryption algorithms for a key `K` and message `x`, and `!x` refers to the bitwise complement of `x` (i.e. if you flipped each bit in `x` once). A new value for key `K` is generated for every new room the player enters, and does not change until the player advances to a new room. The player does not have access to this key `K`.
 
 To beat this game, the player cannot rely on pure luck and blindly guess 50 coin flips correctly in a row - that is mathematically infeasible. Rather, they must design an algorithm that can distinguish between the pseudorandom response and the random response to queries. In theoretical cryptography, this is called an *adversary*.
 
