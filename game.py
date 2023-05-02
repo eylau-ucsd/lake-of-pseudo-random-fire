@@ -18,7 +18,7 @@ class PRFGame:
     def pseudorandom(self, msg): # pseudorandom function
         msg_comp = bytes(x ^ 0xff for x in msg) # bitwise complement of msg
         cipher = AES.new(self.key, AES.MODE_ECB)
-        ciphertext = cipher.encrypt(msg) + cipher.encrypt(msg_comp) # concatenation of cipher.encrypt(msg) and cipher.decrypt(msg_comp)
+        ciphertext = cipher.encrypt(msg) + cipher.decrypt(msg_comp) # concatenation of cipher.encrypt(msg) and cipher.decrypt(msg_comp)
         return ciphertext
     
     def random(self, msg):
