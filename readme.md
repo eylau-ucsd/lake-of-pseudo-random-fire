@@ -1,16 +1,16 @@
-# Lake of Pseudo-Random Fire
-## Crypto - Medium
-| author | first blood | solves | points |
-| --- | --- | -- | --- |
-| Eugene Lau | TBD | TBD | TBD |
+## Lake of Pseudo-Random Fire
 
-### prompt
+| Author | Category | Difficulty |
+| --- | --- | --- |
+| Eugene Lau | cryptography | easy |
 
-Greetings! You are a weary traveller, searching for a long-lost treasure  - the Beacon of True Randomness. However, in your quest to obtain it, you must go through a series of rooms to get to the Beacon. In each room there are two doors - one leads you closer to the Beacon, but the other leads to Lake of Pseudo-Random Fire - your demise!
+### Description
 
-Accompanying you in your journey is a high priest named Orycull. They are your only way to tell which door is which. When Orycull utters an incantation of your choosing, the doors emit different signals. The door leading you closer to the Beacon will emit a fully random signal, while the door leading you to the Lake will emit a pseudorandom signal.
-
-A clever traveller may be able to distinguish the random and pseudorandom signals and safely get to the treasure. However, be careful as Orycull can only utter so many incantations...
+> Greetings! You are a weary traveller, searching for a long-lost treasure  - the Beacon of True Randomness. However, in your quest to obtain it, you must go through a series of rooms to get to the Beacon. In each room there are two doors - one leads you closer to the Beacon, but the other leads to Lake of Pseudo-Random Fire - your demise!
+> 
+> Accompanying you in your journey is a high priest named Orycull. They are your only way to tell which door is which. When Orycull utters an incantation of your choosing, the doors emit different signals. The door leading you closer to the Beacon will emit a fully random signal, while the door leading you to the Lake will emit a pseudorandom signal.
+> 
+> A clever traveller may be able to distinguish the random and pseudorandom signals and safely get to the treasure. However, be careful as Orycull can only utter so many incantations...
 
 ### original specification
 
@@ -46,3 +46,9 @@ With this observation, we can already come up with an *adversary* that can disti
 3. Take the second half of the left door's response. If it is equal to `aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`, the message we sent initially, there is a very high likelihood that the left door is the pseudorandom door - it is very improbable that the actual RNG generated that specific string - so choose the right door, since it is very likely to be the random door. If not, then we are certain the left door is the random door, so we will choose the left door in that case.
  
 The player can implement this algorithm and automate the solving of this challenge using a script. `exploit.py` in the root directory of this repository is an example of such a script. After going through the 50 rooms, they will be rewarded with the flag, ending the challenge.
+
+### Challenge Files
+
+[lake-prf.zip](dist)
+
+[Solution](solution)
